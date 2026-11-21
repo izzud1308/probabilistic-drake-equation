@@ -1,276 +1,204 @@
 # Probabilistic Drake Equation
 
-**A computational project exploring a probabilistic approach to estimating the number of carbon-based technological civilizations in the Milky Way.**
+A computational project exploring a probabilistic, time-dependent formulation of the Drake Equation, combining exoplanet occurrence-rate literature with stochastic models of evolutionary transitions.
 
 **Author:** Izzudin Priyambodo  
 **Language:** Python  
-**Project Type:** Computational Science / Mathematical Modeling  
-**Status:** In Development
+**Project type:** Computational astrophysics / probability / scientific computing  
+**Status:** In development
 
 ---
 
 ## 1. Overview
 
-The Drake Equation, introduced by Frank Drake in 1961, provides a framework for estimating the number of technologically capable civilizations in the Milky Way.
+The classical Drake Equation, introduced by Frank Drake in 1961, provides a framework for discussing the number of technologically capable civilizations in the Milky Way:
 
-The classical equation is expressed as:
+\[
+N = R_* f_p n_e f_l f_i f_c L
+\]
 
-$$
-N = R_* \times f_p \times n_e \times f_l \times f_i \times f_c \times L
-$$
+Several terms are uncertain, especially those concerning the emergence and evolution of life. This project explores how these uncertainties can be represented using probability distributions and stochastic waiting-time models.
 
-Although astronomical observations have improved significantly over the past decades, several parameters remain highly uncertain, particularly those associated with the emergence and evolution of life.
+The project has two main components:
 
-This project explores a probabilistic reformulation of the Drake Equation by combining astronomical observations with statistical models from existing scientific literature.
+1. **Astronomical component:** estimate the expected population of planets that meet an explicitly defined Earth-like / habitable-zone working criterion.
+2. **Biological component:** model the time required for a planet to pass through a sequence of evolutionary transitions leading to technological capability.
 
-Instead of assigning fixed values to uncertain biological parameters, this approach represents them using probability distributions. Monte Carlo simulation is then used to propagate uncertainty and examine the resulting distribution of possible technological civilizations.
+The aim is not to claim a definitive number of extraterrestrial civilizations. It is to build a transparent, reproducible computational model and examine how its assumptions affect the result.
 
-The project primarily focuses on mathematical modeling, probability theory, statistical inference, and scientific computing.
+## 2. Current mathematical framework
 
-## 2. Objectives
+### 2.1 Astronomical population
 
-The main objectives are:
+The initial astronomical model is organized by stellar spectral class:
 
-- Reformulate the classical Drake Equation into a probabilistic model.
-- Explore astronomical data from the NASA Exoplanet Archive.
-- Identify potentially Earth-like exoplanets using predefined physical criteria.
-- Investigate existing statistical models of abiogenesis and biological evolution.
-- Integrate different probability models into a unified mathematical framework.
-- Implement Monte Carlo simulations using Python.
-- Perform sensitivity analysis to identify the most influential parameters.
+\[
+N_E = \sum_{s\in\{F,G,K,M\}} N_{\star,s}\,\eta_{\mathrm{HZ},s}
+\]
 
-## 3. Scientific Background
+where:
 
-### 3.1 Why Carbon-Based Life?
+| Symbol | Meaning |
+|---|---|
+| \(N_{\star,s}\) | Estimated number of Milky Way stars in spectral class \(s\) |
+| \(\eta_{\mathrm{HZ},s}\) | Average number of planets per star meeting the adopted radius and habitable-zone criteria for class \(s\) |
+| \(N_E\) | Expected number of eligible planets in the Milky Way |
 
-This project focuses on carbon-based life using water as its primary solvent.
+Here, \(\eta_{\mathrm{HZ},s}\) is an **occurrence rate (average planets per star)**. It is not automatically the probability that a star hosts at least one eligible planet; a system can contain multiple planets.
 
-Carbon is particularly interesting because of its ability to form stable covalent bonds with itself and many other elements. This allows the formation of complex organic molecules, including proteins, DNA, and RNA.
+The occurrence-rate literature does not by itself provide the Milky Way star counts \(N_{\star,s}\). Those counts require a separate stellar-population source.
 
-All currently known life on Earth relies on carbon-based biochemistry. Therefore, carbon-based life provides the strongest available empirical foundation for studying the emergence of biological complexity.
+### 2.2 Stochastic evolutionary waiting times
 
-This restriction does not imply that alternative forms of life are impossible. It simply establishes a more manageable scope for the mathematical model.
+Rather than multiplying a sequence of fixed biological probabilities, the current working approach represents the duration of evolutionary transitions as random waiting times.
 
-### 3.2 Earth-Like Planets
+For transition \(i\), a provisional model is:
 
-The model considers terrestrial planets with characteristics resembling Earth.
+\[
+\tau_i\mid\lambda_i \sim \operatorname{Exponential}(\lambda_i)
+\]
 
-The initial selection criteria include:
+The total time to technological capability is represented as:
 
-- Rocky planetary composition.
-- Location within the circumstellar habitable zone.
-- Orbit around a main-sequence star.
-- Planetary mass and radius within predefined Earth-like ranges.
+\[
+T_{\mathrm{tech}} = \sum_{i=1}^{k}\tau_i
+\]
 
-The habitable zone refers to the region around a star where liquid water could potentially exist on a planet's surface under suitable atmospheric conditions.
+where \(k\) is the number of transitions defined by the biological framework. The rates \(\lambda_i\), their probability distributions, the number of stages, and any dependence between stages still require explicit justification and calibration from the biological literature.
 
-References:
+This is a **working model**, not an established conclusion that evolutionary transitions are independent exponential processes.
 
-- [Kopparapu et al. (2013) — Habitable Zones Around Main-Sequence Stars](https://doi.org/10.1088/0004-637X/765/2/131)
-- [Schulze-Makuch et al. (2011) — A Two-Tiered Approach to Assessing the Habitability of Exoplanets](https://doi.org/10.1089/ast.2010.0592)
+### 2.3 Expected number reaching technological capability
 
-## 4. Mathematical Model
+For a specified available evolutionary time window \(T_H\), the working output is:
 
-The initial probabilistic formulation is:
+\[
+\mathbb{E}[N_{\mathrm{tech}}] =
+N_E\,P(T_{\mathrm{tech}}\leq T_H)
+\]
 
-$$
-N_{\mathrm{tech}} =
-N_E \times P_A
-\times P_{EU|A}
-\times P_{M|EU}
-\times P_{I|M}
-\times P_{C|I}
-$$
+This estimates the expected number of eligible planets on which technological capability has emerged within the chosen time window under the model assumptions.
 
-Where:
+**The result is not the number of civilizations currently active or communicating.** The classical lifetime parameter \(L\) is intentionally excluded from this initial scope. A present-day active-civilization estimate would require a model for civilization duration and temporal overlap.
 
+## 3. Astronomical literature and data
 
-| Parameter | Description |
-|:---:|---|
-| $N_E$ | Estimated population of eligible Earth-like planets |
-| $P_A$ | Probability of abiogenesis |
-| $P_{EU\mid A}$ | Probability of evolutionary emergence given abiogenesis |
-| $P_{M\mid EU}$ | Probability of multicellular life given evolutionary emergence |
-| $P_{I\mid M}$ | Probability of intelligence given multicellular life |
-| $P_{C\mid I}$ | Probability of technological communication given intelligence |
+The initial literature review focuses on Kepler-based estimates of rocky or small-planet occurrence in habitable zones.
 
+| Study | Population / scope | Relevant result |
+|---|---|---|
+| Hsu, Ford & Terrien (2020) | M dwarfs; \(0.75\)–\(1.5\,R_\oplus\) | \(0.33^{+0.10}_{-0.12}\) planets per star using the authors' baseline Dirichlet prior |
+| Kunimoto & Matthews (2020) | G dwarfs; \(0.75\)–\(1.5\,R_\oplus\), conservative HZ | \(0.11^{+0.07}_{-0.05}\) planets per star with catalogue-reliability correction |
+| Bryson et al. (2020) | Separate G- and K-dwarf samples; \(0.5\)–\(1.5\,R_\oplus\), conservative HZ | Estimates depend on stellar-temperature group and completeness extrapolation |
 
-The biological parameters are treated as uncertain quantities represented by probability distributions.
+These values are **not yet a harmonized parameter set**. Their planet-radius ranges, target samples, inference methods, and completeness assumptions differ. They must not be averaged as though they were measurements under identical conditions.
 
-The proposed evolutionary pathway is:
+See [docs/literature_review.md](docs/literature_review.md) for the detailed extraction, assumptions, limitations, and open questions.
 
-**Earth-like Planet → Abiogenesis → Eukaryotic Life → Multicellularity → Intelligence → Technological Civilization**
+### Initial data source
 
-The conditional formulation is a simplified working model based on the evolutionary history of life on Earth. Alternative evolutionary pathways may be considered as the project develops.
+The [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/) is an initial source for confirmed exoplanet and host-star properties.
 
-### Why Is the Lifetime Parameter Excluded?
+Potentially useful fields include:
 
-The classical Drake Equation includes $L$, representing the average lifetime of a communicating civilization.
-
-This project initially excludes $L$ because its focus is on estimating the number of eligible planets that reach technological civilization within a defined evolutionary time window, rather than the number of civilizations communicating at a particular moment.
-
-Therefore, the resulting quantity should not be interpreted as the number of currently active civilizations.
-
-## 5. Data Sources
-
-### NASA Exoplanet Archive
-
-The primary astronomical data source is the [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/).
-
-The project uses the Planetary Systems Composite Parameters (PSCompPars) catalog as an initial source of exoplanet data.
-
-Relevant parameters include:
-
-- Planetary radius and mass.
+- Planet radius and mass.
 - Orbital period and semi-major axis.
 - Stellar mass and radius.
-- Stellar effective temperature.
-- Stellar luminosity.
-- Planetary equilibrium temperature.
+- Stellar effective temperature and luminosity.
+- Planetary equilibrium temperature, where available.
 
-Additional resources:
+**Important observational limitation:** the confirmed-planet catalogue is an incomplete, detection-biased sample. Counting confirmed planets in a catalogue does not directly measure the total occurrence rate of planets in the Galaxy. Occurrence-rate studies attempt to correct for survey completeness, reliability, and selection effects. The project will use the catalogue for data exploration and explicitly distinguish that task from estimating the underlying planet population.
 
-- [NASA Exoplanet Archive Documentation](https://exoplanetarchive.ipac.caltech.edu/docs/intro.html)
-- [PSCompPars Documentation](https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html)
-- [NASA Habitable Zone](https://science.nasa.gov/exoplanets/habitable-zone/)
+## 4. Working scope and definitions
 
-**Note:** Confirmed exoplanet catalogs are incomplete observational samples. Estimating the total population of Earth-like planets requires accounting for detection biases and occurrence rates, rather than simply counting confirmed planets.
+The project focuses on carbon-based, water-associated life as a tractable reference case because Earth is the only known example of life. This is a modeling scope, not a claim that alternative biochemistries are impossible.
 
-## 6. Statistical Models and Literature
+The working astronomical comparison range in the initial literature synthesis is \(0.75\)–\(1.5\,R_\oplus\), because it is reported by both Hsu et al. (2020) and Kunimoto & Matthews (2020). It is **not yet a final definition** of an Earth-like planet.
 
-The biological parameters are investigated using existing scientific models.
+A habitable-zone orbit does not establish that a planet is inhabited or actually habitable. Atmospheric composition, water inventory, geological activity, stellar activity, and other conditions matter. Planet radius alone also does not prove rocky composition.
 
-| Biological Process | Mathematical Approach | Main Reference |
-|---|---|---|
-| Abiogenesis | Bayesian inference | Spiegel & Turner (2012) |
-| Eukaryotic evolution | Hard-step model | Carter (1983) |
-| Multicellular evolution | Bayesian hard-step framework | Snyder-Beattie et al. |
-| Emergence of intelligence | Hard-step / alternative evolutionary models | Carter (1983); Mills et al. (2025) |
-| Technological civilization | Exploratory probability model | Further literature review |
+## 5. Computational approach
 
-### Key References
+Python will be used for:
 
-**1. Abiogenesis**
+- Retrieving, cleaning, and exploring astronomical data.
+- Documenting selection criteria and parameter provenance.
+- Sampling uncertain astronomical occurrence rates.
+- Implementing stochastic waiting-time models.
+- Running Monte Carlo simulations.
+- Quantifying uncertainty and conducting sensitivity analysis.
+- Producing reproducible figures and summary statistics.
 
-Spiegel, D. S., & Turner, E. L. (2012).
+The precise distributions and inference methods will be selected only after their assumptions have been reviewed and documented.
 
-*Bayesian Analysis of the Astrobiological Implications of Life's Early Emergence on Earth.*
+## 6. Repository structure
 
-[DOI: 10.1073/pnas.1111694108](https://doi.org/10.1073/pnas.1111694108)
+The repository will grow as the analysis is implemented. The intended structure is:
 
-**2. Hard-Step Evolution**
+    probabilistic-drake-equation/
+    ├── docs/
+    │   ├── literature_review.md
+    │   └── mathematical_framework.md
+    ├── data/
+    │   ├── raw/
+    │   └── processed/
+    ├── notebooks/
+    │   ├── 01_exoplanet_data.ipynb
+    │   ├── 02_occurrence_rates.ipynb
+    │   ├── 03_stellar_population.ipynb
+    │   ├── 04_waiting_time_model.ipynb
+    │   ├── 05_monte_carlo.ipynb
+    │   └── 06_sensitivity_analysis.ipynb
+    ├── src/
+    │   ├── data_processing.py
+    │   ├── astronomical_model.py
+    │   ├── waiting_time_model.py
+    │   ├── monte_carlo.py
+    │   └── sensitivity.py
+    ├── results/
+    │   └── figures/
+    ├── references.bib
+    ├── requirements.txt
+    └── README.md
 
-Carter, B. (1983).
+This is a planned structure; files should be added when their corresponding work begins. Large raw datasets should not be committed blindly. Record their source, retrieval date, query, and any relevant licence or redistribution restrictions.
 
-*The Anthropic Principle and its Implications for Biological Evolution.*
+## 7. Development roadmap
 
-[Paper](https://sseh.uchicago.edu/doc/Carter_Phil_Trans_1983.pdf)
+- [x] Define the initial project scope.
+- [x] Identify initial Kepler occurrence-rate literature.
+- [x] Create an initial literature extraction.
+- [ ] Finalize a consistent operational definition of an eligible planet.
+- [ ] Harmonize F-, G-, K-, and M-star occurrence-rate inputs.
+- [ ] Identify a defensible Milky Way stellar population model by spectral class.
+- [ ] Implement and validate the astronomical population calculation \(N_E\).
+- [ ] Review and specify the biological transition sequence and waiting-time assumptions.
+- [ ] Identify evidence and priors for the transition-rate parameters.
+- [ ] Implement Monte Carlo propagation of astronomical and biological uncertainty.
+- [ ] Perform sensitivity analysis and robustness checks.
+- [ ] Document results, limitations, and reproducibility details.
 
-**3. Bayesian Hard-Step Model**
+## 8. Limitations
 
-Snyder-Beattie, A. et al. (2021).
+The project faces several fundamental uncertainties:
 
-*The Timing of Evolutionary Transitions Suggests Intelligent Life is Rare.*
+- Earth is the only known inhabited planet.
+- Kepler occurrence rates are subject to finite-sample uncertainty, completeness corrections, reliability corrections, and extrapolation.
+- Published studies use different planet-radius ranges, stellar samples, and habitable-zone definitions.
+- The Milky Way stellar population by spectral type must be estimated separately.
+- The probability distributions and dependence structure of evolutionary waiting times are not yet established.
+- A sequence inferred from Earth's history may not represent every possible evolutionary pathway.
+- Reaching technological capability is not the same as developing detectable communication or remaining active today.
 
-[DOI: 10.1089/ast.2019.2149](https://doi.org/10.1089/ast.2019.2149)
+All outputs must therefore be interpreted as conditional, model-dependent estimates rather than definitive predictions.
 
-**4. Alternative Evolutionary Model**
+## 9. References
 
-Mills, B. J. W. et al. (2025).
-
-*A Reassessment of the "Hard-Steps" Model for the Evolution of Intelligent Life.*
-
-[DOI: 10.1126/sciadv.ads5698](https://doi.org/10.1126/sciadv.ads5698)
-
-These studies provide different perspectives on the statistical interpretation of biological evolution. Their assumptions and mathematical formulations will be examined before implementation.
-
-## 7. Computational Methods
-
-Python will be used for data processing, mathematical modeling, and numerical simulation.
-
-### Bayesian Inference
-
-Used to investigate uncertain parameters, particularly the probability or rate of abiogenesis.
-
-### Probability Distributions
-
-Different probability distributions will be considered depending on the mathematical structure and assumptions of each biological model.
-
-### Monte Carlo Simulation
-
-Random samples will be generated from the selected probability distributions and propagated through the probabilistic Drake Equation.
-
-The resulting simulations will be used to examine:
-
-- Mean and median estimates.
-- Variance and uncertainty intervals.
-- Probability of zero technological civilizations.
-- Probability of at least one other technological civilization.
-
-### Sensitivity Analysis
-
-Sensitivity analysis will investigate how uncertainty in individual parameters affects the final model output.
-
-The initial method under consideration is Sobol sensitivity analysis.
-
-## 8. Project Structure
-
-```text
-probabilistic-drake-equation/
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── notebooks/
-│   ├── 01_exoplanet_data.ipynb
-│   ├── 02_planetary_selection.ipynb
-│   ├── 03_biological_models.ipynb
-│   ├── 04_monte_carlo.ipynb
-│   └── 05_sensitivity_analysis.ipynb
-│
-├── src/
-│   ├── data_processing.py
-│   ├── probability_models.py
-│   ├── monte_carlo.py
-│   └── sensitivity.py
-│
-├── results/
-│   └── figures/
-│
-├── references.bib
-├── requirements.txt
-└── README.md
-```
-
-## 9. Development Roadmap
-
-- [x] Define the initial project concept.
-- [x] Establish the mathematical framework.
-- [x] Identify relevant scientific literature.
-- [ ] Retrieve NASA exoplanet data.
-- [ ] Implement Earth-like planet selection.
-- [ ] Investigate and implement biological probability models.
-- [ ] Integrate the probability distributions.
-- [ ] Implement Monte Carlo simulation.
-- [ ] Perform sensitivity analysis.
-- [ ] Document results and model limitations.
-
-## 10. Limitations
-
-This project involves several important limitations:
-
-- Earth is currently the only known example of an inhabited planet.
-- The probability of abiogenesis remains highly uncertain.
-- Major evolutionary transitions may not be independent.
-- The hard-step hypothesis is not universally accepted.
-- The transition from intelligence to technological civilization is poorly constrained.
-- Exoplanet observations are affected by detection and selection biases.
-
-The results should therefore be interpreted as model-dependent estimates rather than definitive predictions about extraterrestrial life.
+- Hsu, D. C., Ford, E. B., & Terrien, R. (2020). *Occurrence Rates of Planets Orbiting M Stars: Applying ABC to Kepler DR25, Gaia DR2, and 2MASS Data.* [arXiv:2002.02573](https://arxiv.org/abs/2002.02573).
+- Kunimoto, M., & Matthews, J. M. (2020). *Searching the Entirety of Kepler Data. II. Occurrence Rate Estimates for FGK Stars.* [arXiv:2004.05296](https://arxiv.org/abs/2004.05296).
+- Bryson, S., et al. (2020). *The Occurrence of Rocky Habitable Zone Planets Around Solar-Like Stars from Kepler Data.* [arXiv:2010.14812](https://arxiv.org/abs/2010.14812).
+- Kopparapu, R. K., et al. (2013). *Habitable Zones Around Main-Sequence Stars: New Estimates.* [DOI: 10.1088/0004-637X/765/2/131](https://doi.org/10.1088/0004-637X/765/2/131).
 
 ---
 
-**Project Philosophy**
-
-The goal is not to produce a definitive answer to whether extraterrestrial civilizations exist, but to explore how mathematical and statistical methods can be used to represent uncertainty in one of the most interesting questions in science.
+**Project principle:** make assumptions explicit, preserve uncertainty, and keep every result traceable to its data and source.
