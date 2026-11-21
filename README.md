@@ -185,7 +185,7 @@ The initial approach will investigate hard-step evolutionary models and stochast
 The exponential distribution may be considered as a baseline model:
 
 $$
-\tau_i|\lambda_i \sim \operatorname{Exponential}(\lambda_i)
+\tau_i \mid \lambda_i \sim \mathrm{Exp}(\lambda_i)
 $$
 
 However, the choice of distribution, transition rates, and dependence between evolutionary stages must be justified using scientific literature.
@@ -197,11 +197,9 @@ The conditional probability and waiting-time formulations must also be combined 
 The expected number of planets that have reached technological civilization within the available evolutionary time window is:
 
 $$
-\boxed{
 \mathbb{E}[N_{\mathrm{tech}}]
 =
-N_E P_{\mathrm{tech}}(T_H)
-}
+N_E \, P_{\mathrm{tech}}(T_H)
 $$
 
 Here, $P_{\mathrm{tech}}(T_H)$ represents the probability that the complete evolutionary pathway succeeds and reaches technological capability within the available time window.
