@@ -196,9 +196,9 @@ This is a planned structure; files should be added when their corresponding work
 4. **Record the provenance before calculating.** For every source, note its full citation/DOI or arXiv link, Galactic component covered (disk/bulge/halo), whether it counts main-sequence stars, mass or temperature boundaries, reported fraction/count, uncertainty, and the exact page/table/figure.
 5. **Calculate counts only from compatible quantities.** If a source provides a total main-sequence population and fractions defined over that same population, then:
    
-   $
+   $$
    N_{\star,s} = N_{\star,\mathrm{MS}} f_s
-   $
+   $$
    
    If a source provides counts directly, retain those instead. Do not multiply a total from one population definition by fractions from another.
 6. **Create a comparison table and review it before coding.** Do not fill missing classes with guesses. Mark unavailable values as unknown and identify what additional source is needed.
