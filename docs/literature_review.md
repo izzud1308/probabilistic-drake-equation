@@ -8,7 +8,7 @@ This document records what the selected papers actually estimate. The values bel
 
 ## 1. What an occurrence rate means
 
-In these studies, an occurrence rate such as \(\eta_{\oplus}\) or \(f_{\mathrm{HZ}}\) is generally an **average number of planets per target star** within a specified planet-radius and orbital/habitable-zone range.
+In these studies, an occurrence rate such as $\eta_{\oplus}$ or $f_{\mathrm{HZ}}$ is generally an **average number of planets per target star** within a specified planet-radius and orbital/habitable-zone range.
 
 It is not automatically the probability that a randomly selected star has at least one such planet. A star can host more than one planet, so an average occurrence rate can in principle exceed one.
 
@@ -18,9 +18,9 @@ A planet orbiting in the habitable zone is not necessarily habitable. The habita
 
 | Study | Stellar population | Planet-radius range | HZ definition / treatment | Main result |
 |---|---|---:|---|---|
-| Hsu et al. (2020) | M dwarfs (sample includes some late-K contamination) | \(0.75\)–\(1.5\,R_\oplus\) | Runaway-greenhouse to maximum-greenhouse limits from Kopparapu et al. (2013), evaluated for individual stars | \(f_{M,\mathrm{HZ}}=0.33^{+0.10}_{-0.12}\) with the baseline Dirichlet prior |
-| Kunimoto & Matthews (2020) | G dwarfs, \(5300\leq T_{\mathrm{eff}}<6000\) K | \(0.75\)–\(1.5\,R_\oplus\) | Conservative HZ; for a Sun-like star, \(0.99\)–\(1.70\) AU | \(0.13^{+0.09}_{-0.06}\), or \(0.11^{+0.07}_{-0.05}\) after their reliability correction |
-| Bryson et al. (2020) | Separate K and G populations | \(0.5\)–\(1.5\,R_\oplus\) | Conservative HZ; star-dependent instellation | K: \(0.32\)–\(0.42\); G: \(0.38\)–\(0.63\), depending on completeness extrapolation |
+| Hsu et al. (2020) | M dwarfs (sample includes some late-K contamination) | $0.75$–$1.5\,R_\oplus$ | Runaway-greenhouse to maximum-greenhouse limits from Kopparapu et al. (2013), evaluated for individual stars | $f_{M,\mathrm{HZ}}=0.33^{+0.10}_{-0.12}$ with the baseline Dirichlet prior |
+| Kunimoto & Matthews (2020) | G dwarfs, $5300\leq T_{\mathrm{eff}}<6000$ K | $0.75$–$1.5\,R_\oplus$ | Conservative HZ; for a Sun-like star, $0.99$–$1.70$ AU | $0.13^{+0.09}_{-0.06}$, or $0.11^{+0.07}_{-0.05}$ after their reliability correction |
+| Bryson et al. (2020) | Separate K and G populations | $0.5$–$1.5\,R_\oplus$ | Conservative HZ; star-dependent instellation | K: $0.32$–$0.42$; G: $0.38$–$0.63$, depending on completeness extrapolation |
 
 **Important:** These values should not be averaged or inserted into one parameter table without harmonizing the radius range, stellar-temperature cuts, HZ definition, and statistical treatment.
 
@@ -54,12 +54,12 @@ The reported HZ occurrence rate is marginalized over the M-star target sample. T
 
 ### Result relevant to this project
 
-For planets with radii \(0.75\)–\(1.5\,R_\oplus\), the authors report:
+For planets with radii $0.75$–$1.5\,R_\oplus$, the authors report:
 
 | Prior | HZ occurrence rate |
 |---|---:|
-| Dirichlet (authors' baseline) | \(0.33^{+0.10}_{-0.12}\) planets per star |
-| Uniform | \(0.44^{+0.29}_{-0.17}\) planets per star |
+| Dirichlet (authors' baseline) | $0.33^{+0.10}_{-0.12}$ planets per star |
+| Uniform | $0.44^{+0.29}_{-0.17}$ planets per star |
 
 The difference is material: the estimate is sensitive to the prior, particularly because the sample is relatively small.
 
@@ -71,7 +71,7 @@ The difference is material: the estimate is sensitive to the prior, particularly
 - The authors apply an FGK-derived detection-efficiency model because the available M-dwarf injection tests are insufficient for a fully independent M-dwarf detection model.
 - The paper discusses the limitations of treating the sample as representative of the full M-dwarf population.
 
-**Project interpretation:** \(0.33\) is a useful literature-based starting point for an M-dwarf comparison at \(0.75\)–\(1.5\,R_\oplus\), but its posterior/prior sensitivity must be carried into the uncertainty analysis.
+**Project interpretation:** $0.33$ is a useful literature-based starting point for an M-dwarf comparison at $0.75$–$1.5\,R_\oplus$, but its posterior/prior sensitivity must be carried into the uncertainty analysis.
 
 ---
 
@@ -86,26 +86,26 @@ The study builds an independent Kepler planet catalogue and estimates occurrence
 
 The stellar sample contains 96,280 FGK stars, divided using the paper's effective-temperature cuts:
 
-- F: \(6000\leq T_{\mathrm{eff}}<7300\) K.
-- G: \(5300\leq T_{\mathrm{eff}}<6000\) K.
-- K: \(3900\leq T_{\mathrm{eff}}<5300\) K.
+- F: $6000\leq T_{\mathrm{eff}}<7300$ K.
+- G: $5300\leq T_{\mathrm{eff}}<6000$ K.
+- K: $3900\leq T_{\mathrm{eff}}<5300$ K.
 
 The G-star sample contains 39,173 targets.
 
 ### Habitable-zone definition and extrapolation
 
-For a Sun-like G star, the paper uses the conservative habitable zone from Kopparapu et al. (2013), approximately \(0.99\)–\(1.70\) AU. This corresponds to orbital periods of approximately 360–809 days.
+For a Sun-like G star, the paper uses the conservative habitable zone from Kopparapu et al. (2013), approximately $0.99$–$1.70$ AU. This corresponds to orbital periods of approximately 360–809 days.
 
 The Kepler sensitivity and completeness constraints make this regime difficult to measure directly. The authors therefore extrapolate occurrence-rate information from the 237–500 day period range to cover the conservative-HZ period range. They explicitly caution that such extrapolations are uncertain and that the resulting estimates should be interpreted as upper limits.
 
 ### Result relevant to this project
 
-For G-type stars and planets with radii \(0.75\)–\(1.5\,R_\oplus\), the conservative-HZ estimate is:
+For G-type stars and planets with radii $0.75$–$1.5\,R_\oplus$, the conservative-HZ estimate is:
 
 | Treatment | Occurrence rate |
 |---|---:|
-| Baseline estimate | \(0.13^{+0.09}_{-0.06}\) planets per star |
-| Including catalogue reliability correction | \(0.11^{+0.07}_{-0.05}\) planets per star |
+| Baseline estimate | $0.13^{+0.09}_{-0.06}$ planets per star |
+| Including catalogue reliability correction | $0.11^{+0.07}_{-0.05}$ planets per star |
 
 The abstract also reports an 84.1st-percentile upper limit of less than 0.18 planets per G-type star for this radius and HZ definition.
 
@@ -116,7 +116,7 @@ The abstract also reports an 84.1st-percentile upper limit of less than 0.18 pla
 - The authors state that the estimates should be treated as upper limits because the relevant long-period, small-planet bins are poorly constrained and have no detections in the relevant parameter ranges.
 - The reported value changes when catalogue reliability is incorporated.
 
-**Project interpretation:** The reliability-corrected value \(0.11^{+0.07}_{-0.05}\) is a useful G-dwarf reference for a \(0.75\)–\(1.5\,R_\oplus\) comparison, but it is not a precise direct count of Earth analogues.
+**Project interpretation:** The reliability-corrected value $0.11^{+0.07}_{-0.05}$ is a useful G-dwarf reference for a $0.75$–$1.5\,R_\oplus$ comparison, but it is not a precise direct count of Earth analogues.
 
 ---
 
@@ -135,12 +135,12 @@ The authors use both a Poisson-likelihood Bayesian method and Approximate Bayesi
 
 Table 5 reports Model 1 results from the Poisson-likelihood method for the conservative HZ, with uncertainties in planet radius, instellation, and stellar effective temperature included.
 
-For planets with radii \(0.5\)–\(1.5\,R_\oplus\):
+For planets with radii $0.5$–$1.5\,R_\oplus$:
 
 | Stellar population | Low occurrence-rate bound | High occurrence-rate bound |
 |---|---:|---:|
-| K dwarfs, \(3900\)–\(5300\) K | \(0.32^{+0.35}_{-0.17}\) | \(0.42^{+0.50}_{-0.23}\) |
-| G dwarfs, \(5300\)–\(6000\) K | \(0.38^{+0.50}_{-0.22}\) | \(0.63^{+0.94}_{-0.38}\) |
+| K dwarfs, $3900$–$5300$ K | $0.32^{+0.35}_{-0.17}$ | $0.42^{+0.50}_{-0.23}$ |
+| G dwarfs, $5300$–$6000$ K | $0.38^{+0.50}_{-0.22}$ | $0.63^{+0.94}_{-0.38}$ |
 
 These are planets per star. The low and high occurrence-rate bounds correspond to two different assumptions about completeness beyond 500 days:
 
@@ -149,14 +149,14 @@ These are planets per star. The low and high occurrence-rate bounds correspond t
 
 The uncertainties shown alongside each value are the paper's 68% credible intervals. The low/high values are not themselves a single 68% credible interval.
 
-For context, the abstract reports a conservative-HZ occurrence range of \(0.37^{+0.48}_{-0.21}\) to \(0.60^{+0.90}_{-0.36}\) planets per star for the broader \(4800\)–\(6300\) K population and \(0.5\)–\(1.5\,R_\oplus\) planets.
+For context, the abstract reports a conservative-HZ occurrence range of $0.37^{+0.48}_{-0.21}$ to $0.60^{+0.90}_{-0.36}$ planets per star for the broader $4800$–$6300$ K population and $0.5$–$1.5\,R_\oplus$ planets.
 
 ### Limitations to retain in the project notes
 
 - Kepler completeness products are available only up to orbital periods of approximately 500 days; occurrence rates beyond this require extrapolation.
 - The two extrapolation assumptions produce a broad range of estimates.
 - The number of detected small HZ planets is low, producing large uncertainties.
-- The separate K- and G-star values use a \(0.5\)–\(1.5\,R_\oplus\) radius range, which differs from the \(0.75\)–\(1.5\,R_\oplus\) range used in the Hsu and Kunimoto comparison above.
+- The separate K- and G-star values use a $0.5$–$1.5\,R_\oplus$ radius range, which differs from the $0.75$–$1.5\,R_\oplus$ range used in the Hsu and Kunimoto comparison above.
 
 **Project interpretation:** This paper is especially useful because it reports separate G- and K-dwarf results and explicitly quantifies the impact of completeness extrapolation. Its tabulated values should remain a separate comparison until the radius range is harmonized.
 
@@ -166,50 +166,50 @@ For context, the abstract reports a conservative-HZ occurrence range of \(0.37^{
 
 ### What can be compared
 
-Hsu et al. and Kunimoto & Matthews both report HZ occurrence rates for the \(0.75\)–\(1.5\,R_\oplus\) radius range. Their estimates provide a preliminary comparison between M- and G-star populations:
+Hsu et al. and Kunimoto & Matthews both report HZ occurrence rates for the $0.75$–$1.5\,R_\oplus$ radius range. Their estimates provide a preliminary comparison between M- and G-star populations:
 
-- M stars: \(0.33^{+0.10}_{-0.12}\) planets per star using Hsu et al.'s baseline Dirichlet prior.
-- G stars: \(0.11^{+0.07}_{-0.05}\) planets per star using Kunimoto & Matthews' reliability-corrected estimate.
+- M stars: $0.33^{+0.10}_{-0.12}$ planets per star using Hsu et al.'s baseline Dirichlet prior.
+- G stars: $0.11^{+0.07}_{-0.05}$ planets per star using Kunimoto & Matthews' reliability-corrected estimate.
 
 This is a comparison between two different studies, samples, and inference pipelines. It should not be interpreted as a controlled experiment isolating stellar spectral type.
 
 ### What cannot yet be combined
 
-The Bryson et al. K- and G-star values use \(0.5\)–\(1.5\,R_\oplus\), not \(0.75\)–\(1.5\,R_\oplus\). They also report a low/high range caused by alternative completeness extrapolations. These estimates cannot simply be averaged with the other two studies.
+The Bryson et al. K- and G-star values use $0.5$–$1.5\,R_\oplus$, not $0.75$–$1.5\,R_\oplus$. They also report a low/high range caused by alternative completeness extrapolations. These estimates cannot simply be averaged with the other two studies.
 
 The selected papers do not yet provide a harmonized set of F-, G-, K-, and M-star occurrence-rate posteriors under one common definition.
 
 ### Provisional project decision
 
-For the next stage, \(0.75\)–\(1.5\,R_\oplus\) is a practical **working comparison range** because it is reported by both Hsu et al. and Kunimoto & Matthews. It is not yet a final definition of an Earth-like planet.
+For the next stage, $0.75$–$1.5\,R_\oplus$ is a practical **working comparison range** because it is reported by both Hsu et al. and Kunimoto & Matthews. It is not yet a final definition of an Earth-like planet.
 
-Bryson et al. should be retained as a sensitivity/comparison source until a matching \(0.75\)–\(1.5\,R_\oplus\) estimate can be extracted or derived from a suitable posterior/model output.
+Bryson et al. should be retained as a sensitivity/comparison source until a matching $0.75$–$1.5\,R_\oplus$ estimate can be extracted or derived from a suitable posterior/model output.
 
 ## 7. Implications for the probabilistic Drake model
 
 The astronomical component is intended to estimate the expected number of eligible planets:
 
-\[
+$$
 N_E = \sum_{s\in\{F,G,K,M\}} N_{\star,s}\,\eta_{\mathrm{HZ},s}
-\]
+$$
 
 where:
 
-- \(N_{\star,s}\) is the Milky Way population of stars in spectral class \(s\).
-- \(\eta_{\mathrm{HZ},s}\) is the average number of planets per star meeting the adopted radius and HZ criteria for that class.
-- \(N_E\) is an expected population, not a direct count of confirmed planets.
+- $N_{\star,s}$ is the Milky Way population of stars in spectral class $s$.
+- $\eta_{\mathrm{HZ},s}$ is the average number of planets per star meeting the adopted radius and HZ criteria for that class.
+- $N_E$ is an expected population, not a direct count of confirmed planets.
 
-The occurrence-rate literature alone does not provide \(N_{\star,s}\). A separate, defensible estimate of the Milky Way stellar population by spectral type is required.
+The occurrence-rate literature alone does not provide $N_{\star,s}$. A separate, defensible estimate of the Milky Way stellar population by spectral type is required.
 
 The final implementation should also propagate uncertainty in the occurrence rates. It should not treat the central values in this document as exact constants. If the full posterior samples are unavailable, any approximation to the published posterior must be documented as an approximation rather than presented as the original posterior.
 
 ## 8. Open questions and next research tasks
 
-1. **Finalize the operational planet definition.** Decide whether the working \(0.75\)–\(1.5\,R_\oplus\) range is appropriate, and state clearly that radius plus HZ location does not prove habitability or rocky composition.
+1. **Finalize the operational planet definition.** Decide whether the working $0.75$–$1.5\,R_\oplus$ range is appropriate, and state clearly that radius plus HZ location does not prove habitability or rocky composition.
 2. **Harmonize occurrence rates.** Find or derive comparable F-, G-, K-, and M-star estimates using consistent radius and HZ definitions.
-3. **Find Milky Way stellar population counts.** Obtain \(N_{\star,F}\), \(N_{\star,G}\), \(N_{\star,K}\), and \(N_{\star,M}\) from a defensible stellar-population source.
+3. **Find Milky Way stellar population counts.** Obtain $N_{\star,F}$, $N_{\star,G}$, $N_{\star,K}$, and $N_{\star,M}$ from a defensible stellar-population source.
 4. **Represent uncertainty correctly.** Prefer published posterior samples or distributions. If only quantiles are available, document the approximation used to sample them.
-5. **Calculate the astronomical population.** Implement and test the calculation of \(N_E\) before connecting it to the biological model.
+5. **Calculate the astronomical population.** Implement and test the calculation of $N_E$ before connecting it to the biological model.
 6. **Then calibrate the biological waiting-time model.** Keep assumptions about evolutionary waiting times separate from the astronomical occurrence-rate inputs.
 
 ## References
