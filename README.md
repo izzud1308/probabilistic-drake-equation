@@ -84,14 +84,16 @@ $$
 
 Where:
 
+
 | Parameter | Description |
-|---|---|
+|:---:|---|
 | $N_E$ | Estimated population of eligible Earth-like planets |
 | $P_A$ | Probability of abiogenesis |
-| $P_{EU|A}$ | Probability of eukaryotic evolution given abiogenesis |
-| $P_{M|EU}$ | Probability of multicellular evolution given eukaryotic life |
-| $P_{I|M}$ | Probability of intelligence given multicellular evolution |
-| $P_{C|I}$ | Probability of technological civilization given intelligence |
+| $P_{EU\mid A}$ | Probability of evolutionary emergence given abiogenesis |
+| $P_{M\mid EU}$ | Probability of multicellular life given evolutionary emergence |
+| $P_{I\mid M}$ | Probability of intelligence given multicellular life |
+| $P_{C\mid I}$ | Probability of technological communication given intelligence |
+
 
 The biological parameters are treated as uncertain quantities represented by probability distributions.
 
